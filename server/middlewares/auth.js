@@ -5,7 +5,7 @@ const User = require("../models/User");
 //auth
 exports.auth = async (req, res, next) => {
     //extract token
-    const token = req.cookies.token 
+    const token = await req.cookies.token 
     || req.body.token 
     || req.header("Authorisation").replace("Bearer ", "");
 
@@ -20,7 +20,7 @@ if(!token) {
 //verify the token
 try {
     try{
-        const decode =  jwt.verify(token, process.env.JWT_SECRET);
+        const decode = await jwt.verify(token, process.env.JWT_SECRET);
         console.log(decode);
         req.user = decode;
     }

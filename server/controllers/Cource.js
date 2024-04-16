@@ -69,7 +69,7 @@ exports.createCourse = async (req, res) => {
         );
 
         //update the TAG ka schema 
-        //TODO: HW
+        // UPDATING REST
 
         //return response
         return res.status(200).json({
@@ -88,4 +88,32 @@ exports.createCourse = async (req, res) => {
         })
     }
 
-}
+};
+
+exports.showAllCourses = async (req,res) => {
+   try {
+       const allCources = await Course.find({},{
+        courseName:true,
+        instructor:true,
+        price:true,
+        thumbnail:true,
+        ratingAndReviews: true,
+       })
+       .populate("instructor")
+       .exec();
+
+       return res.status(200).json({
+           success:true,
+           message:"All courses fetched successfully",
+           data:allCources,
+       })
+       
+   } catch (error) {
+       console.error(error);
+       return res.status(500).json({
+           success:false,
+           message:"Can not fetch cource data",
+           message:error.message,
+       })
+   }
+};

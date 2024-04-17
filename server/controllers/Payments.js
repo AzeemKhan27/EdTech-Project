@@ -3,6 +3,7 @@ const Course = require("../models/Course.js");
 const User = require("../models/User.js")
 const mailSender = require("../utils/mailSender.js");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail.js");
+const { default: mongoose } = require("mongoose");
 
 //capture payment and initiate the RazarPay order:
 
@@ -96,7 +97,7 @@ exports.verifySignature = async (req,res) => {
     const digest = shasum.digest("hex");
 
     //compare and match signature and digest.
-    if(signatures === digest) {
+    if(signature === digest) {
         console.log("Payment Authorised.");
 
         const {courseId, userId } = req.body.payload.payment.entity.notes;

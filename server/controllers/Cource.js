@@ -8,18 +8,22 @@ exports.createCourse = async (req, res) => {
     try {
 
         //fetch data 
-        const {courseName, courseDescription, whatYoutWillLearn, price, tag} = req.body;
+        const {courseName, courseDescription, whatYoutWillLearn, price, tag, category, status, instructions} = req.body;
 
-        //get thumbnail
+        //get thumbnail from request files
         const thumbnail = req.files.thumbnailImage;
 
         //validation
-        if(!courseName || !courseDescription || !whatYoutWillLearn || !price || !tag || !thumbnail) {
+        if(!courseName || !courseDescription || !whatYoutWillLearn || !price || !tag || !thumbnail || !category) {
             return res.status(400).json({
                 success:false,
                 message:'All fields are required',
             });
         }
+
+        if (!status || status === undefined) {
+			status = "Draft";
+		}
 
         //check for instructor
         const userId = req.user.id;
@@ -35,7 +39,7 @@ exports.createCourse = async (req, res) => {
         }
 
         //check given Category is valid or not
-        const categoryDetails = await Category.findById(tag);
+        const categoryDetails = await Category.findById(category);
         if(!categoryDetails) {
             return res.status(404).json({
                 success:false,
@@ -51,11 +55,14 @@ exports.createCourse = async (req, res) => {
             courseName,
             courseDescription,
             instructor: instructorDetails._id,
-            whatYouWillLearn: whatYoutWillLearn,
+            whatYouWillLearn,
             price,
-            tag:categoryDetails._id,
+            tag,
+            category:categoryDetails._id,
             thumbnail:thumbnailImage.secure_url,
-        })
+            status,
+            instructions
+        });
 
         //add the new course to the user schema of Instructor
         await User.findByIdAndUpdate(
@@ -68,8 +75,16 @@ exports.createCourse = async (req, res) => {
             {new:true},
         );
 
-        //update the TAG ka schema 
-        // UPDATING REST
+        // Add the new course to the categories:
+        await Category.findByIdAndUpdate(
+            {_id: category},
+            {
+                $push:{
+                    course: newCourse._id,
+                },
+            },
+            {new : true}
+        );
 
         //return response
         return res.status(200).json({
@@ -90,15 +105,19 @@ exports.createCourse = async (req, res) => {
 
 };
 
-exports.showAllCourses = async (req,res) => {
+exports.getAllCourses = async (req,res) => {
    try {
-       const allCources = await Course.find({},{
-        courseName:true,
-        instructor:true,
-        price:true,
-        thumbnail:true,
-        ratingAndReviews: true,
-       })
+       const allCources = await Course.find(
+             {},
+             {
+                    courseName:true,
+                    instructor:true,
+                    price:true,
+                    thumbnail:true,
+                    ratingAndReviews: true,
+                    studentsEnrolled:true
+             }
+    )
        .populate("instructor")
        .exec();
 
@@ -117,3 +136,5 @@ exports.showAllCourses = async (req,res) => {
        })
    }
 };
+
+//getCourseDetails

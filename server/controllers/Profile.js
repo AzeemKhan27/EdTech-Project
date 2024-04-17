@@ -1,4 +1,5 @@
 const Profile = require("../models/Profile");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const User = require("../models/User");
 
 exports.updateProfile = async (req,res) => {
@@ -28,6 +29,8 @@ exports.updateProfile = async (req,res) => {
         profileDetails.about = about;
         profileDetails.contactNumber = contactNumber;
         profileDetails.gender = gender;
+
+        //save the updated profile details
         await profileDetails.save();
         //return response
         return res.status(200).json({
@@ -48,15 +51,15 @@ exports.deleteAccount = async (req, res) => {
         //get id 
         const id = req.user.id;
         //validation
-        const userDetails = await User.findById(id);
-        if(!userDetails) {
+        const user = await User.findById({_id:id});
+        if(!user) {
             return res.status(404).json({
                 success:false,
                 message:'User not found',
             });
         } 
         //delete profile
-        await Profile.findByIdAndDelete({_id:userDetails.additionalDetails});
+        await Profile.findByIdAndDelete({_id:user.userDetails});
          
         // Unenroll user from all courses
          const enrolledCourses = userDetails.enrolledCourses;
@@ -93,11 +96,14 @@ exports.getAllUserDetails = async (req, res) => {
         const id = req.user.id;
 
         //validation and get user details
-        const userDetails = await User.findById(id).populate("additionalDetails").exec();
+        const userDetails = await User.findById(id)
+                                      .populate("additionalDetails")
+                                      .exec();
         //return response
         return res.status(200).json({
             success:true,
             message:'User Data Fetched Successfully',
+            data: userDetails
         });
        
     }

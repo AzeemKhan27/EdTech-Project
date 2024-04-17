@@ -26,7 +26,12 @@ exports.createSection = async (req, res) =>{
                                                 }
                                         },
                                         {new : true},
-                                     ).populate("courseContent");
+                                     ).populate({
+                                        path: "courseContent",
+                                        populate:{
+                                            path:"subSection"
+                                        }
+                                     }).exec();
       //return response
       return res.json({
          success:true,
@@ -63,7 +68,7 @@ exports.updateSection = async (req,res) => {
                                             {new : true},
                                          );
         //return response
-        return res.json({
+        return res.status(200).json({
             success:true,
             message:'Section updated successfully',
             updatedSectionDetails
@@ -73,7 +78,7 @@ exports.updateSection = async (req,res) => {
         console.log(error.message);
         return res.status(500).json({
             success:false,
-            message:error.message,
+            message:"Internal Server Error",
         })
     }
 }
@@ -86,7 +91,7 @@ exports.deleteSection = async (req,res) => {
         await Section.findByIdAndDelete(sectionId);
         //return response
         console.log(`Section deleted successfully`)
-        return res.json({
+        return res.status(200).json({
             success:true,
             message:'Section deleted successfully',
         })
@@ -94,7 +99,7 @@ exports.deleteSection = async (req,res) => {
         console.log(error.message);
         return res.status(500).json({
             success:false,
-            message:error.message,
+            message:"Internal Server Error",
         })
     }
 }

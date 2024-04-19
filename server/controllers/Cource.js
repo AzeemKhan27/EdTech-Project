@@ -138,3 +138,54 @@ exports.getAllCourses = async (req,res) => {
 };
 
 //getCourseDetails
+exports.getCourseDetails = async () => {
+   try {
+    
+     //get id.
+     const {courseId} = req.body;
+     //find course details.
+     const courseDetails = await Course.find(
+                                        { _id: courseId })
+                                        .populate(
+                                            {
+                                                path: 'instructor',
+                                                populate: {
+                                                    path: 'additionalDetails'
+                                                },
+                                            }
+                                        )    
+                                        .populate('category')
+                                        .populate('ratingAndReviews')
+                                        .populate(
+                                            {
+                                                path: 'courseContent',
+                                                populate:{
+                                                    path: 'subSection'
+                                                },
+                                            })
+                                            .exec();
+
+                     //Validation 
+                     if(!courseDetails) {
+                         return res.status(400).json({
+                             success:false,
+                             message:`could not found the course details with this courseId: ${courseId}`,
+                         });
+                     }
+
+                     //return res
+                     return res.status(200).json({
+                         success:true,
+                         message:"Course Details fetched successfully",
+                         data:courseDetails,
+                     });
+                                        
+
+   } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({
+         success:false,
+         message:error.message,
+      });
+   }
+};

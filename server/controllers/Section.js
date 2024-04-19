@@ -1,7 +1,7 @@
 const Section = require("../models/Section");
 const Cource = require("../models/Cource");
 
-exports.createSection = async (req, res) =>{
+exports.createSection = async (req, res) => {
    try {
       //data fetch
       const {courseId, sectionName} = req.body;

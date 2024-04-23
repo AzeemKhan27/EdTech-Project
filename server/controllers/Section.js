@@ -1,5 +1,5 @@
 const Section = require("../models/Section");
-const Cource = require("../models/Cource");
+const Cource = require("../models/Course.js");
 
 exports.createSection = async (req, res) => {
    try {

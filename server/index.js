@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 
-const userRoutes = require('./routes/User')
-const profileRoutes = require('./routes/Profile')
-const paymentRoutes = require('./routes/Payments')
-const courseRoutes = require('./routes/Course')
+const userRoutes = require('./routes/user.route.js')
+const profileRoutes = require('./routes/profile.route.js')
+const paymentRoutes = require('./routes/payment.route.js')
+const courseRoutes = require('./routes/course.route.js')
 
 const dataBase = require('./config/database.js');
 const cookieParser = require('cookie-parser');

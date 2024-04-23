@@ -9,39 +9,39 @@ const {
   createCourse,
   getAllCourses,
   getCourseDetails,
-} = require("../controllers/Course")
+} = require("../controllers/Cource.js")
 
 
 // Categories Controllers Import
 const {
-  showAllCategories,
+  showAllcategory,
   createCategory,
   categoryPageDetails,
-} = require("../controllers/Category")
+} = require("../controllers/Category.js")
 
 // Sections Controllers Import
 const {
   createSection,
   updateSection,
   deleteSection,
-} = require("../controllers/Section")
+} = require("../controllers/Section.js")
 
 // Sub-Sections Controllers Import
 const {
   createSubSection,
   updateSubSection,
   deleteSubSection,
-} = require("../controllers/Subsection")
+} = require("../controllers/Subsection.js")
 
 // Rating Controllers Import
 const {
   createRating,
   getAverageRating,
   getAllRating,
-} = require("../controllers/RatingAndReview")
+} = require("../controllers/RatingAndReview.js")
 
 // Importing Middlewares
-const { auth, isInstructor, isStudent, isAdmin } = require("../middleware/auth")
+const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth.js")
 
 // ********************************************************************************************************
 //                                      Course routes
@@ -72,7 +72,7 @@ router.post("/getCourseDetails", getCourseDetails)
 // Category can Only be Created by Admin
 // TODO: Put IsAdmin Middleware here
 router.post("/createCategory", auth, isAdmin, createCategory)
-router.get("/showAllCategories", showAllCategories)
+router.get("/showAllCategories", showAllcategory)
 router.post("/getCategoryPageDetails", categoryPageDetails)
 
 // ********************************************************************************************************
@@ -80,6 +80,6 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 // ********************************************************************************************************
 router.post("/createRating", auth, isStudent, createRating)
 router.get("/getAverageRating", getAverageRating)
-router.get("/getReviews", getAllRatingReview)
+router.get("/getReviews", getAllRating)
 
 module.exports = router

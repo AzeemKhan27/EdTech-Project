@@ -111,14 +111,14 @@ exports.signUp = async (req, res) => {
         }
 
         //find most recent OTP stored for the user
-        const recentOtp = await OTP.find({email}).sort({createdAt:-1}).limit(1);
-        console.log(recentOtp);
+        // const recentOtp = await OTP.find({email}).sort({createdAt:-1}).limit(1);
+        const recentOtp = await OTP.findOne({email});
         //validate OTP
         if(recentOtp.length == 0) {
             //OTP not found
             return res.status(400).json({
                 success:false,
-                message:'OTPP Found',
+                message:'OTP NOT Found',
             })
         } else if(otp !== recentOtp.otp) {
             //Invalid OTP
@@ -149,7 +149,7 @@ exports.signUp = async (req, res) => {
             password:hashedPassword,
             accountType,
             additionalDetails:profileDetails._id,
-            image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstname} ${lastName}`,
+            image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
         })
 
         //return res

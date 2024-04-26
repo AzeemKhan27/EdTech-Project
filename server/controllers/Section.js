@@ -5,8 +5,9 @@ exports.createSection = async (req, res) => {
    try {
       //data fetch
       const {courseId, sectionName} = req.body;
+
       //data validation
-      if(!courseId || sectionName) {
+      if(!courseId || !sectionName) {
         return res.json({
             success:false,
             message:'All fields are required'
@@ -86,7 +87,7 @@ exports.updateSection = async (req,res) => {
 exports.deleteSection = async (req,res) => {
     try {
         //get id
-        const {sectionId} = req.params;
+        const {sectionId} = req.body;
         //delete section
         await Section.findByIdAndDelete(sectionId);
         //return response

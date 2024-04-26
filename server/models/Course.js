@@ -46,11 +46,9 @@ const courseSchema = new mongoose.Schema({
         required:true,
         ref:"User",
     }],
-    instructors: {
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:"User",
-    },
+    instructions: {
+        type: [String]
+    },  
     status:{
         type:String,
         enum: ["Draft", "Published"],

@@ -1,13 +1,14 @@
 const SubSection = require("../models/SubSection")
-const Section = require("../models/SubSection")
+const Section = require("../models/Section")
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 exports.createSubSection = async (req,res) => {
    try {
       //fecth data from Req body
       const { sectionId, title, timeDuration, description } = req.body;
-      //extract file/video
+      //extract file/video  
       const video = req.files.videoFile;
+
       //validation
       if(!sectionId || !title || !timeDuration || !description || !video){
          return res.status(400).json({
@@ -31,7 +32,7 @@ exports.createSubSection = async (req,res) => {
                                                              subSection:subSectionDetails._id,
                                                          }},
                                                         {new:true})
-                                             .populate("SubSection")           
+                                             .populate("subSection")           
       //returrn res
       return res.status(200).json({
         success: true,

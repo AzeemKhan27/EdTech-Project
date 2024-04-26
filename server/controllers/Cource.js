@@ -8,13 +8,13 @@ exports.createCourse = async (req, res) => {
     try {
 
         //fetch data 
-        const {courseName, courseDescription, whatYoutWillLearn, price, tag, category, status, instructions} = req.body;
+        let {courseName, courseDescription, whatYouWillLearn, price, tag, category, status, instructions} = req.body;
 
         //get thumbnail from request files
         const thumbnail = req.files.thumbnailImage;
 
         //validation
-        if(!courseName || !courseDescription || !whatYoutWillLearn || !price || !tag || !thumbnail || !category) {
+        if(!courseName || !courseDescription || !whatYouWillLearn || !price || !tag || !thumbnail || !category) {
             return res.status(400).json({
                 success:false,
                 message:'All fields are required',
@@ -111,7 +111,7 @@ exports.getAllCourses = async (req,res) => {
              {},
              {
                     courseName:true,
-                    instructor:true,
+                    instructions:true,
                     price:true,
                     thumbnail:true,
                     ratingAndReviews: true,
@@ -138,7 +138,7 @@ exports.getAllCourses = async (req,res) => {
 };
 
 //getCourseDetails
-exports.getCourseDetails = async () => {
+exports.getCourseDetails = async (req,res) => {
    try {
     
      //get id.
@@ -155,7 +155,7 @@ exports.getCourseDetails = async () => {
                                             }
                                         )    
                                         .populate('category')
-                                        .populate('ratingAndReviews')
+                                        // .populate('ratingAndReviews')
                                         .populate(
                                             {
                                                 path: 'courseContent',

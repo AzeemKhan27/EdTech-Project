@@ -9,8 +9,8 @@ const courseRoutes = require('./routes/course.route.js')
 const dataBase = require('./config/database.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const { cloudinaryConnect } = require('cloudinary');
-const fileUpload = require('express-file-upload');
+const cloudinaryConnection = require("./config/cloudinary.js")
+const fileUpload = require('express-fileupload');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -37,7 +37,7 @@ app.use(
 )
 
 //cloudinary connection
-    cloudinaryConnect();
+cloudinaryConnection.cloudinaryConnect();
 
 //routes
 app.use("/api/v1/auth",userRoutes);

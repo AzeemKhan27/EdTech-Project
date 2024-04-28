@@ -8,6 +8,8 @@ server/package.json
 # dependencies
 ./node_modules
 /EdTechContentHub/node_modules
+/EdTechContentHub/package.json
+/EdTechContentHub/package-lock.json
 /.pnp
 .pnp.js
 

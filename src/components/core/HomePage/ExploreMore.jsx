@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {HomePageExplore} from "../../../data/homepage-explore";
+import HighlightText from "../HomePage/HighlightText.jsx"
 
 const tabsName = [
     "Free",

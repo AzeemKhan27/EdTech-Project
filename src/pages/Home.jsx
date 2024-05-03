@@ -10,6 +10,7 @@ import LearningLanguageSection from "../components/core/HomePage/LearningLanguag
 import TimelineSection from "../components/core/HomePage/TimelineSection.jsx"
 import InstructorSection from "../components/core/HomePage/InstructorSection.jsx"
 import ExploreMore from "../components/core/HomePage/ExploreMore.jsx"
+import Footer from "../components/common/Footer.jsx"
 
 
 function Home() {
@@ -191,11 +192,13 @@ function Home() {
 
         <h2 className='text-center text-4xl font-semobold mt-10'>review from Other Learners</h2>
         {/* Review Slider here */}
+
+        <Footer />
     </div>
 
 
     {/*Footer */}
-    <Footer />
+    {/* <Footer /> */}
 
     </div>
   )

@@ -9,6 +9,7 @@ import CodeBlocks from "../components/core/HomePage/CodeBlocks.jsx"
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection.jsx"
 import TimelineSection from "../components/core/HomePage/TimelineSection.jsx"
 import InstructorSection from "../components/core/HomePage/InstructorSection.jsx"
+import ExploreMore from "../components/core/HomePage/ExploreMore.jsx"
 
 
 function Home() {
@@ -126,6 +127,8 @@ function Home() {
                 codeblock={`<!DOCTYPE html>\n<html>\n<head><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`}
                 codeColor={"text-yellow-25"}
             />
+
+            <ExploreMore />
         </div>
 
         {/* Section-2 */}

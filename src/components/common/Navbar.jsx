@@ -43,6 +43,12 @@ function Navbar() {
                 </ul>
             </nav>
 
+            {/* Login Signup Dashboard */}
+
+            <div className='flex gap-x-4 items-center'>
+
+            </div>
+
         </div>
     </div>
   )

@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
-import rootReducer from "./reducer/index.js";
+import { BrowserRouter } from "react-router-dom";
+import rootReducer from "./reducer/index";
 import {configureStore} from "@reduxjs/toolkit"
 import { Provider } from "react-redux";
 import { Toaster } from 'react-hot-toast';
@@ -15,7 +15,7 @@ const store = configureStore({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider stote={store}>
+    <Provider store={store}>
         <BrowserRouter>
             <App />
             <Toaster />

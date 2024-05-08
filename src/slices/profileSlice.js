@@ -15,4 +15,4 @@ const profileSlice = createSlice({
 });
 
 export const {setUser} = profileSlice.actions;
-export default profileSlice.reducers;
+export default profileSlice.reducer;

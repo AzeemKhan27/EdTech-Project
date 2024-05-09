@@ -9,6 +9,18 @@ import { apiConnector } from '../../services/apiconnector.js';
 import { categories } from '../../services/apis.js';
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 
+const subLinks = [
+    {
+        title: "python",
+        link:"/catalog/python"
+    },
+    {
+        title: "web dev",
+        link:"/catalog/web-development"
+    },
+];
+
+
 function Navbar() {
 
     const {token} = useSelector((state) => state.auth);
@@ -16,20 +28,21 @@ function Navbar() {
     const {totalItems} = useSelector((state) => state.cart)
     const location = useLocation();
 
-    const [subLinks, setSubLinks] = useState([]);
-    const fetchSubLinks = async() => {
-        try {
-            const result = apiConnector("GET", categories.CATEGORIES_API);
-            console.log("printing sublinks results: ", result);
-            setSubLinks((await result).data.data);
-        } catch (error) {
-            console.log("could not fetch the category list");
-        }
-    }
+    //const [ssubLinks, setSsubLinks] = useState([]);
 
-    useEffect(() => {
-        fetchSubLinks();
-    }, [])
+    // const fetchSubLinks = async() => {
+    //     try {
+    //         const result = apiConnector("GET", categories.CATEGORIES_API);
+    //         console.log("printing sublinks results: ", result);
+    //         setSsubLinks((await result).data.data);
+    //     } catch (error) {
+    //         console.log("could not fetch the category list");
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     fetchSubLinks();
+    // }, [])
     
 
     const matchRoute = (route) => {
@@ -55,7 +68,7 @@ function Navbar() {
                             <li key={index}>
                                 {
                                 link.title === "Catalog" ? (
-                                <div className="relative flex items-center gap-2">
+                                <div className="relative flex items-center gap-2 group">
                                     <p>{link.title}</p>
                                     <IoMdArrowDropdownCircle />
 

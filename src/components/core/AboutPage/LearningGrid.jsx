@@ -78,7 +78,16 @@ function LearningGrid() {
                                     </div>
                                 </div>
                             ):
-                            ()
+                            (
+                                <div>
+                                    <h1>
+                                        {card.heading}
+                                    </h1>
+                                    <p>
+                                        {card.description}
+                                    </p>
+                                </div>   
+                            )
                         }
 
                     </div>

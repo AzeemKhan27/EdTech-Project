@@ -6,6 +6,7 @@ import BannerImage3 from "../assets/Images/aboutus3.webp";
 import Quote from '../components/core/AboutPage/Quote.jsx'
 import FoundingStory from "../assets/Images/FoundingStory.png"
 import StatsComponent from "../components/core/AboutPage/Stats.jsx"
+import LearningGrid from "../components/core/AboutPage/LearningGrid.jsx"
 
 function About() {
   return (
@@ -84,6 +85,10 @@ function About() {
       {/* section - 4 */}
 
       <StatsComponent />
+
+      {/* section - 5 */}
+
+      <LearningGrid />
 
     </div>
   )

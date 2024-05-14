@@ -7,10 +7,12 @@ import Quote from '../components/core/AboutPage/Quote.jsx'
 import FoundingStory from "../assets/Images/FoundingStory.png"
 import StatsComponent from "../components/core/AboutPage/Stats.jsx"
 import LearningGrid from "../components/core/AboutPage/LearningGrid.jsx"
+import ContactFormSection from "../components/core/AboutPage/ContactFormSection.jsx"
+import Footer from "../components/common/Footer.jsx"
 
 function About() {
   return (
-    <div className='mx-auto mt-[100px] text-white'>
+    <div className='mx-auto mt-[100px] text-white w-11/12 max-w-maxContent'>
     {/* section - 1 */}
       <section>
         <div>
@@ -65,9 +67,9 @@ function About() {
 
           {/* vision and mission parent div */}
 
-          <div className="flex flex-col">
+          <div className="flex">
             {/* left box div */}
-            <div className="flex">
+            <div>
               <h1>Our Vision</h1>
               <p>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
             </div>
@@ -88,7 +90,20 @@ function About() {
 
       {/* section - 5 */}
 
+    <section className="mx-auto flex flex-col items-center justify-between gap-5 mb-[140px]">
       <LearningGrid />
+      <ContactFormSection />
+    </section>
+
+    <section>
+        <div>
+            Reviews from other learners
+            {/* <ReviewSlider /> */}
+        </div>
+      </section>
+
+      <Footer/>
+    
 
     </div>
   )

@@ -46,7 +46,7 @@ const LearningGridArray = [
 
 function LearningGrid() {
   return (
-    <div className="grid grid-col-1 lg:grid-cols-4 mb-10 p-5 lg:w-fit">
+    <div className="grid  grid-col-1 lg:grid-cols-4 mb-10 p-5 lg:w-fit">
         {
             LearningGridArray.map((card,index)=>{
                 return (
@@ -73,7 +73,7 @@ function LearningGrid() {
                                     </p>
                                     <div className="w-fit mt-4">
                                         <CTAButton active={true} linkto={card.BtnLink}>
-                                              {card.BtnLink}
+                                              {card.BtnText}
                                         </CTAButton>
                                     </div>
                                 </div>

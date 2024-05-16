@@ -1,7 +1,6 @@
 import React from 'react'
 import { FaArrowRight } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-import HighlightText from './HighlightText'
+
 import CTAButton from "../HomePage/Button"
 import { TypeAnimation } from 'react-type-animation';
 

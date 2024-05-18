@@ -23,26 +23,30 @@ const subLinks = [
 
 function Navbar() {
 
+    console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
+
     const {token} = useSelector((state) => state.auth);
     const {user} = useSelector((state) => state.profile);
     const {totalItems} = useSelector((state) => state.cart)
     const location = useLocation();
 
-    //const [ssubLinks, setSsubLinks] = useState([]);
+    const [ssubLinks, setSsubLinks] = useState([]);
 
-    // const fetchSubLinks = async() => {
-    //     try {
-    //         const result = apiConnector("GET", categories.CATEGORIES_API);
-    //         console.log("printing sublinks results: ", result);
-    //         setSsubLinks((await result).data.data);
-    //     } catch (error) {
-    //         console.log("could not fetch the category list");
-    //     }
-    // }
+    const fetchSubLinks = async() => {
+        try {
+            const result = apiConnector("GET", categories.CATEGORIES_API);
+            console.log("printing sublinks results: ", result);
+            // setSsubLinks((await result).data.data);
+            setSsubLinks(result.data.data);
+        } catch (error) {
+            console.log("could not fetch the category list");
+        }
+    }
 
-    // useEffect(() => {
-    //     fetchSubLinks();
-    // }, [])
+    useEffect(() => {
+        console.log("PRINTING TOKEN", token);
+        fetchSubLinks();
+    }, [])
     
 
     const matchRoute = (route) => {
@@ -93,7 +97,6 @@ function Navbar() {
                                             ) )
                                     ) : (<div></div>)
                                 }
-
 
                              </div>
 

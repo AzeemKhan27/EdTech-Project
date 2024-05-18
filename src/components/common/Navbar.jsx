@@ -23,7 +23,7 @@ const subLinks = [
 
 function Navbar() {
 
-    console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
+    console.log("Printing base url : Navbar Component : ",process.env.REACT_APP_BASE_URL);
 
     const {token} = useSelector((state) => state.auth);
     const {user} = useSelector((state) => state.profile);
@@ -89,10 +89,10 @@ function Navbar() {
                                     </div>
                                     
                                     {
-                                    subLinks.length ? (
-                                            subLinks.map( (subLink, index) => (
-                                                <Link to={`${subLink.link}`} key={index}>
-                                                    <p>{subLink.title}</p>
+                                    ssubLinks.length ? (
+                                            ssubLinks.map( (ssubLink, index) => (
+                                                <Link to={`${ssubLink.link}`} key={index}>
+                                                    <p>{ssubLink.title}</p>
                                                 </Link>
                                             ) )
                                     ) : (<div></div>)

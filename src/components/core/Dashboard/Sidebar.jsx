@@ -1,10 +1,12 @@
 import React from 'react'
-import { sideBarLinks } from "../../../data/dashboard-links";
+import { sidebarLinks } from "../../../data/dashboard-links";
 import { logout } from "../../../services/operations/authAPI";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ConfirmationModal from "../../common/ConfirmationModal.jsx"
+import { useNavigate } from 'react-router-dom';
+import { VscSignOut } from "react-icons/vsc"
 
-function Sidebar() {
+const Sidebar = () => {
     const {user, loading: profileLoading} = useSelector((state) => state.profile);
     const {loading: authLoading} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -31,7 +33,8 @@ function Sidebar() {
                         return (
                             <SidebarLink key={link.id}  link={link} iconName={link.icon}/>
                         )
-                    })}
+                    })
+                  }
             </div>
 
             <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-600'></div>

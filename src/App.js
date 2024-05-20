@@ -19,6 +19,8 @@ import Error from "./pages/Error"
 import Setting from "./components/core/Dashboard/Settings"
 import { useDispatch , useSelector} from "react-redux";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Cart from "./components/core/Dashboard/Cart"
+import { ACCOUNT_TYPE } from "./utils/constants.js"
 
 function App() {
   return (
@@ -92,7 +94,16 @@ function App() {
 
         <Route path="dashboard/my-profile" element={<MyProfile />} />
         <Route path="dashboard/settings" element={<Setting />} />
-        <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+
+
+        {
+          user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+                <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+                <Route path="dashboard/cart" element={<Cart />} />
+            </>
+          )
+        }
           
         </Route>
 

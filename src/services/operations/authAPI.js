@@ -1,10 +1,10 @@
 import { toast } from "react-hot-toast"
 
-import  { setLoading, setToken }  from "../../slices/authSlice"
-import  { resetCart }  from "../../slices/cartSlice"
-import { setUser } from "../../slices/profileSlice"
-import { apiConnector } from "../apiconnector"
-import { endpoints } from "../apis"
+import  { setLoading, setToken }  from "../../slices/authSlice.js"
+import  { resetCart }  from "../../slices/cartSlice.js"
+import { setUser } from "../../slices/profileSlice.js"
+import { apiConnector } from "../apiconnector.js"
+import { endpoints } from "../apis.js"
 
 const {
   SENDOTP_API,

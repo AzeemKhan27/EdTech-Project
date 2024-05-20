@@ -90,9 +90,9 @@ function Navbar() {
                                     
                                     {
                                     ssubLinks.length ? (
-                                            ssubLinks.map( (ssubLink, index) => (
-                                                <Link to={`${ssubLink.link}`} key={index}>
-                                                    <p>{ssubLink.title}</p>
+                                            ssubLinks.map( (subLink, index) => (
+                                                <Link to={`${subLink.link}`} key={index}>
+                                                    <p>{subLink.title}</p>
                                                 </Link>
                                             ) )
                                     ) : (<div></div>)

@@ -75,9 +75,13 @@ const SubSectionModal = ({
         //API call
         const result  = await updateSubSection(formData, token);
         if(result) {
-            //TODO: same check 
-            dispatch(setCourse(result));
+            const updatedCourseContent = course.courseContent.map((section) =>
+                section._id === modalData.sectionId ? result : section )
+
+            const updatedCourse = { ...course, courseContent: updatedCourseContent }
+            dispatch(setCourse(updatedCourse))
         }
+        
         setModalData(null);
         setLoading(false);
     }
@@ -110,9 +114,13 @@ const SubSectionModal = ({
         const result = await createSubSection(formData, token);
 
         if(result) {
-            //TODO: check for updation
-            dispatch(setCourse(result))
-        }
+            // update the structure of course
+        const updatedCourseContent = course.courseContent.map((section) =>
+        section._id === modalData ? result : section
+        );
+        const updatedCourse = { ...course, courseContent: updatedCourseContent }
+        dispatch(setCourse(updatedCourse))
+         }
         setModalData(null);
         setLoading(false);
 

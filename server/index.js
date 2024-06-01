@@ -5,6 +5,7 @@ const userRoutes = require('./routes/user.route.js')
 const profileRoutes = require('./routes/profile.route.js')
 const paymentRoutes = require('./routes/payment.route.js')
 const courseRoutes = require('./routes/course.route.js')
+const contactUsRoute = require('./routes/contact.route.js')
 
 const dataBase = require('./config/database.js');
 const cookieParser = require('cookie-parser');
@@ -44,6 +45,7 @@ app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1/profile",profileRoutes);
 app.use("/api/v1/course",courseRoutes);
 app.use("/api/v1/payment",paymentRoutes);
+app.use("/api/v1/reach", contactUsRoute);
 
 //default route:
 

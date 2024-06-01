@@ -1,34 +1,29 @@
-import React from 'react'
-
-const IconBtn = ({
+export default function IconBtn({
     text,
-    onClick,
+    onclick,
     children,
     disabled,
     outline = false,
     customClasses,
     type,
-
-}) => {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      type={type}
-      className={`flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-white bg-richblue-500 hover:bg-richblue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-richblue-500 ${customClasses}`}
-    >
-      {
-            children ? (
-                 <>
-                   <span>
-                      {text}
-                   </span>
-                      {children}
-                 </>
-            ) : (text)
-      }
-    </button>
-  )
-}
-
-export default IconBtn
+  }) {
+    return (
+      <button
+        disabled={disabled}
+        onClick={onclick}
+        className={`flex items-center ${
+          outline ? "border border-yellow-50 bg-transparent" : "bg-yellow-50"
+        } cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-richblack-900 ${customClasses}`}
+        type={type}
+      >
+        {children ? (
+          <>
+            <span className={`${outline && "text-yellow-50"}`}>{text}</span>
+            {children}
+          </>
+        ) : (
+          text
+        )}
+      </button>
+    )
+  }
